@@ -3,14 +3,13 @@ package gugudan;
 public class Gugudan {
     public static void main(String[] args) {
         System.out.println("Hello CodeSquad");
-        
-        int i = 2;
-        while (i < 10) {
-            for (int j = 1; j < 10; j++) {
-                System.out.println(i + " x " + j + " = " + (i * j));
-            }
-            i++;
+
+        int[] result = new int[9];
+        for (int i = 0; i < result.length; i++) {
+            result[i] = 2 * (i + 1);
         }
-        
+        for (int i = 0; i < result.length; i++) {
+            System.out.println("2 x " + (i + 1) + " = " + result[i]);
+        }
     }
 }
