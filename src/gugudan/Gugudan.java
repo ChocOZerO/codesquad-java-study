@@ -6,6 +6,7 @@ public class Gugudan {
 
         int[] result = new int[9];
         for (int i = 0; i < result.length; i++) {
+            // 계산 결과를 배열에 저장
             result[i] = dan * (i + 1);
         }
         return result;
@@ -13,16 +14,9 @@ public class Gugudan {
     
     public static void print(int dan, int[] result) {
         for (int i = 0; i < result.length; i++) {
+            // 계산 결과를 화면에 출력
             System.out.println(dan + " x " + (i + 1) + " = " + result[i]);
         }
     }
     
-    public static void main(String[] args) {
-        System.out.println("Hello CodeSquad");
-        
-        for (int i = 2; i < 10; i++) {
-            print(i, calculate(i));
-        }
-        
-    }
 }
