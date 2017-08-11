@@ -7,22 +7,22 @@ public class GugudanMain {
     public static void main(String[] args) {
         System.out.println("Hello CodeSquad");
         
-        /* 추가 요구사항 2
-         -> 사용자가 입력한 값에 따라 크기가 다른 구구단을 계산해 출력
-            예를 들어 사용자가 "8,7"과 같은 문자열을 입력하면 팔칠단을 구현한다.
-            팔칠단은 2 * 1 ... 2 * 7, 3 * 1 ... 3 * 7, ... , 8 * 1 ... 8 * 7 까지 구현하는 것을 의미한다.
+        /* 
+        사용자가 숫자 값 하나를 입력하면 입력한 숫자의 구구단 결과를 출력한다.
+        위 요구사항 구현을 다음과 같이 클래스를 분리해 구현한다.
+        
+        사용자의 입력을 받는 클래스 - GugudanInput
+        사용자 입력 값에 따른 구구단을 실행하는 클래스 - Gugudan
+        구구단 실행 결과를 출력하는 클래스 - GugudanOutput
+        이 3개의 클래스를 조합해 프로그램을 실행하는 클래스 - GuguandanMain
+        
+        GugudanInput은 int input() 메소드를 구현해야 한다.
+        Gugudan은 ArrayList<Integer> calculate(int times) 메소드를 구현해야 한다.
+        GugudanOutput은 void print(ArrayList<Integer> result) 메소드를 구현해야 한다.
+        GuguandanMain은 main() 메소드를 가지면 위 3개의 메소드를 조합해야 한다.
         */
-        System.out.println("원하시는 구구단을 쉼표로 구분하여 입력하세요. 예) '8,7' ");
         
-        Scanner sc = new Scanner(System.in);
-        String input = sc.nextLine();
-        String[] gugudan = input.split(",");
-        int first = Integer.parseInt(gugudan[0]);
-        int second = Integer.parseInt(gugudan[1]);
-        
-        for (int i = 2; i <= first; i++) {
-            Gugudan.print(i, Gugudan.calculate(i, second));
-        }
+        GugudanOutput.print(Gugudan.calculate(GugudanInput.input()));
         
     }
 }
