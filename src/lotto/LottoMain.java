@@ -16,7 +16,9 @@ public class LottoMain {
         
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
         String winLotto = sc.nextLine();
-        Win win = new Win(winLotto);        
+        Win win = new Win(winLotto);
+        win.getWin().printLotto();
+        System.out.println();
         LottoChecker lc = new LottoChecker(lottoUser, win);
         lc.matchUp();
         System.out.println("당첨 통계");

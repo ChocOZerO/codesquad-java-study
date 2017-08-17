@@ -9,7 +9,7 @@ public class LottoUser {
     
     public LottoUser(int money) {
         this.money = money;
-        this.lottoCount = (int)(money / 1000);
+        this.lottoCount = (int)(this.money / 1000);
     }
     
     public int getMoney() {

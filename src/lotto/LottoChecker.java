@@ -23,8 +23,8 @@ public class LottoChecker {
     }
     
     private void checkLotto(Lotto lotto) {
-        for (int i = 0; i < lotto.getPickedNumCount(); i++) {
-            isContains(win.isContains(lotto.findLottoNum(i)));
+        for (int i = 0; i < lotto.getLottoNumCount(); i++) {
+            isContains(win.getWin().isContains(lotto.getLottoNum(i)));
         }
         countUpMatches(matchUp);
         matchUp = 0;

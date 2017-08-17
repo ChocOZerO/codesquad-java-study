@@ -13,6 +13,6 @@ public class LottoGameTest {
         lg.generateLottos();
         assertEquals(15, count);
         lg.printLottos();
-        assertEquals(1, lg.getLotto(0).findLottoNum(1));
+        assertEquals(1, lg.getLotto(0).getLottoNum(1));
     }
 }

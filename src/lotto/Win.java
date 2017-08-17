@@ -1,17 +1,27 @@
 package lotto;
 
-import java.util.ArrayList;
-
 public class Win {
-    private ArrayList<Integer> win = new ArrayList<>();
-    public Win(String win) {
-        String[] winTmp = win.split(", ");
-        for (int i = 0; i < winTmp.length; i++) {
-            this.win.add(Integer.parseInt(winTmp[i]));
-        }
+    private Lotto win;
+    private String winInput;
+    
+    LottoGame lottoGame = new LottoGame(1000);
+    
+    public Win(String winInput) {
+        this.winInput = winInput;
+        if ("lottery".equals(this.winInput)) this.getAutoLotto();
+        else this.getWinLotto();
     }
     
-    boolean isContains(int num) {
-        return win.contains(num);
+    private void getAutoLotto() {
+        this.win = lottoGame.generateAutoWinLotto();
+    }
+    
+    private void getWinLotto() {
+        String[] winInputTmp = this.winInput.split(", ");
+        this.win = lottoGame.generateWinLotto(winInputTmp);
+    }
+    
+    public Lotto getWin() {
+        return this.win;
     }
 }

@@ -18,9 +18,9 @@ public class LottoTest {
         arrList.add(5);
         arrList.add(6);
         Lotto lotto = new Lotto(arrList);
-        assertEquals(6, lotto.getPickedNumCount());
-        assertEquals(1, lotto.findLottoNum(0));
-        assertEquals((new Lotto(arrList)).findLottoNum(0), lotto.findLottoNum(0));
+        assertEquals(6, lotto.getLottoNumCount());
+        assertEquals(1, lotto.getLottoNum(0));
+        assertEquals((new Lotto(arrList)).getLottoNum(0), lotto.getLottoNum(0));
     }
 
 }

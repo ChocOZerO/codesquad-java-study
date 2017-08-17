@@ -8,19 +8,23 @@ public class Lotto {
         this.lotto = lotto;
     }
     
-    public int getPickedNumCount() {
+    public int getLottoNumCount() {
         return this.lotto.size();
     }
     
-    public int findLottoNum(int index) {
-        return lotto.get(index);
+    public int getLottoNum(int index) {
+        return this.lotto.get(index);
+    }
+    
+    boolean isContains(int num) {
+        return this.lotto.contains(num);
     }
     
     public void printLotto() {
         System.out.print("[");
-        for (int i = 0; i < lotto.size(); i++) {
+        for (int i = 0; i < this.getLottoNumCount(); i++) {
             if (i != 0) System.out.print(", ");
-            System.out.print(lotto.get(i));
+            System.out.print(this.lotto.get(i));
         }
         System.out.print("]");
     }
