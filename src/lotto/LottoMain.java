@@ -8,17 +8,16 @@ public class LottoMain {
         
         Scanner sc = new Scanner(System.in);
         int money = Integer.parseInt(sc.nextLine());
-        
-        LottoGame lottoGame = new LottoGame(money);
-        int lottoCount = lottoGame.getAvailableCount();
-        lottoGame.buyLottos();
+        LottoUser lottoUser = new LottoUser(money);
+        int lottoCount = lottoUser.getLottoCount();
+        lottoUser.buyLottos();
         System.out.println(lottoCount+"개를 구매했습니다.");
-        lottoGame.printLottos();
+        lottoUser.printLottos();
         
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
         String winLotto = sc.nextLine();
         Win win = new Win(winLotto);        
-        LottoChecker lc = new LottoChecker(lottoGame, win);
+        LottoChecker lc = new LottoChecker(lottoUser, win);
         lc.matchUp();
         System.out.println("당첨 통계");
         System.out.println("-------");

@@ -10,7 +10,7 @@ public class LottoGameTest {
     public void test() {
         LottoGame lg = new LottoGame(15000);
         int count = lg.getAvailableCount();
-        lg.buyLottos();
+        lg.generateLottos();
         assertEquals(15, count);
         lg.printLottos();
         assertEquals(1, lg.getLotto(0).findLottoNum(1));

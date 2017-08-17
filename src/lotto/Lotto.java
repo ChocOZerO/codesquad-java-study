@@ -1,17 +1,11 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.List;
 
 public class Lotto {
-    private ArrayList<Integer> lotto = new ArrayList<>();
-    public Lotto() {
-        for (int i = 1; i <= 45; i++) {
-            this.lotto.add(i);
-        }
-        Collections.shuffle(this.lotto);
-        this.lotto = new ArrayList<>(this.lotto.subList(0, 6));
-        Collections.sort(this.lotto);
+    private List<Integer> lotto;
+    public Lotto(List<Integer> lotto) {
+        this.lotto = lotto;
     }
     
     public int getPickedNumCount() {

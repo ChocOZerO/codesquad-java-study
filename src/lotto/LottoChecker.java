@@ -1,7 +1,7 @@
 package lotto;
 
 public class LottoChecker {
-    private LottoGame lottoGame;
+    private LottoUser lottoUser;
     private Win win;
     
     private int matchUp = 0;
@@ -11,18 +11,18 @@ public class LottoChecker {
     private int match5 = 0;
     private int match6 = 0;
     
-    public LottoChecker(LottoGame lottoGame, Win win) {
-        this.lottoGame = lottoGame;
+    public LottoChecker(LottoUser lottoUser, Win win) {
+        this.lottoUser = lottoUser;
         this.win = win;
     }
     
     public void matchUp() {
-        for (int i = 0; i < lottoGame.getAvailableCount(); i++) {
-            checkLottoGame(lottoGame.getLotto(i));
+        for (int i = 0; i < lottoUser.getLottoCount(); i++) {
+            checkLotto(lottoUser.getLotto(i));
         }
     }
     
-    private void checkLottoGame(Lotto lotto) {
+    private void checkLotto(Lotto lotto) {
         for (int i = 0; i < lotto.getPickedNumCount(); i++) {
             isContains(win.isContains(lotto.findLottoNum(i)));
         }

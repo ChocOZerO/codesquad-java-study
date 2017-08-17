@@ -8,11 +8,11 @@ public class LottoCheckerTest {
 
     @Test
     public void test() {
-        LottoGame lg = new LottoGame(15000);
-        lg.buyLottos();
+        LottoUser lottoUser = new LottoUser(15000);
+        lottoUser.buyLottos();
         Win win = new Win("1, 2, 3, 4, 5, 6");
         
-        LottoChecker lc = new LottoChecker(lg, win);
+        LottoChecker lc = new LottoChecker(lottoUser, win);
         lc.matchUp();
         
         assertEquals(0, lc.getMatch3());
