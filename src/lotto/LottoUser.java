@@ -8,6 +8,7 @@ public class LottoUser {
     private int lottoCount;
     private int autoLottoCount;
     private int manualLottoCount;
+    private ArrayList<String[]> manuals = new ArrayList<>();
     
     public LottoUser(int money) {
         this.money = money;
@@ -17,6 +18,9 @@ public class LottoUser {
     public void setAutoLottoCount(int autoLottoCount) {
         this.autoLottoCount = autoLottoCount;
         this.manualLottoCount = this.lottoCount - this.autoLottoCount;
+    }
+    public void setManuals(ArrayList<String[]> manuals) {
+        this.manuals = manuals;
     }
     
     public int getMoney() {
@@ -36,6 +40,8 @@ public class LottoUser {
     public void buyLottos() {
         LottoGame lottoGame = new LottoGame(this.autoLottoCount);
         lottoGame.generateAutoLottos();
+        if (this.manualLottoCount > 0 && this.manuals != null)
+            lottoGame.generateManualLottos(this.manuals); 
         this.lottos = lottoGame.getLottos();
     }
     public ArrayList<Lotto> getLottos() {

@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LottoMain {
@@ -10,8 +11,17 @@ public class LottoMain {
         int money = Integer.parseInt(sc.nextLine());
         LottoUser lottoUser = new LottoUser(money);
         int lottoCount = lottoUser.getLottoCount();
+        System.out.println("자동으로 뽑을 로또의 개수를 입력해주세요.");
+        int autoLottoCount = Integer.parseInt(sc.nextLine());
+        lottoUser.setAutoLottoCount(autoLottoCount);
+        if (autoLottoCount != lottoCount) {
+            lottoUser.setManuals(setManuals(lottoUser.getManualLottoCount()));
+        }
+        
         lottoUser.buyLottos();
-        System.out.println(lottoCount+"개를 구매했습니다.");
+        System.out.println("자동으로 " + lottoUser.getAutoLottoCount() + "개를 구매했습니다.");
+        System.out.println("수동으로 " + lottoUser.getManualLottoCount() + "개를 구매했습니다.");
+        System.out.println("총 " + lottoCount + "개를 구매했습니다.");
         lottoUser.printLottos();
         
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
@@ -33,6 +43,23 @@ public class LottoMain {
         System.out.println("총 수익률은 " + rewards.getRefundRate(money) + "% 입니다.");
         
         sc.close();
+    }
+    private static ArrayList<String[]> setManuals(int manualCount) {
+
+        ArrayList<String[]> manuals = new ArrayList<>();
+        
+        for (int i = 1; i <= manualCount; i++) {
+            String[] manual = new String[6];
+            manual[0] = String.valueOf(((2 * i) % 45) + 1);
+            manual[1] = String.valueOf(((3 * i) % 45) + 1);
+            manual[2] = String.valueOf(((4 * i) % 45) + 1);
+            manual[3] = String.valueOf(((5 * i) % 45) + 1);
+            manual[4] = String.valueOf(((6 * i) % 45) + 1);
+            manual[5] = String.valueOf(((7 * i) % 45) + 1);
+            manuals.add(manual);
+        }
+        
+        return manuals;
     }
     
 }
