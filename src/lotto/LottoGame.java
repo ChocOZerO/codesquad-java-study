@@ -5,26 +5,26 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoGame {
-    private int money;
+    
+    private int autoLottoCount;
+    
     private ArrayList<Lotto> lottos = new ArrayList<>();
     List<Integer> lottoArray;
     
-    public LottoGame(int money) {
-        this.money = money;
+    public LottoGame(int autoLottoCount) {
+        this.autoLottoCount = autoLottoCount;
     }
     
-    public int getAvailableCount() {
-        return (int)(this.money / 1000);
+    public int getAutoLottoCount() {
+        return this.autoLottoCount;
     }
     
-    public ArrayList<Lotto> generateLottos() {
-        int count = getAvailableCount();
-        for (int i = 0; i < count; i++) {
-            this.lottos.add(this.generateLotto());
+    public void generateAutoLottos() {
+        for (int i = 0; i < this.autoLottoCount; i++) {
+            this.lottos.add(this.generateAutoLotto());
         }
-        return this.lottos;
     }
-    private Lotto generateLotto() {
+    private Lotto generateAutoLotto() {
         this.lottoArray = new ArrayList<>();
         for (int i = 1; i <= 45; i++) {
             this.lottoArray.add(i);
@@ -35,12 +35,12 @@ public class LottoGame {
         Lotto lotto = new Lotto(Collections.unmodifiableList(this.lottoArray));
         return lotto;
     }
-    
-    public Lotto generateAutoWinLotto() {
-        return this.generateLotto();
+    public void generateManualLottos(ArrayList<String[]> manuals) {
+        for (int i = 0; i < manuals.size(); i++) {
+            this.lottos.add(this.generateManualLotto(manuals.get(i)));
+        }
     }
-    
-    public Lotto generateWinLotto(String[] winInput) {
+    private Lotto generateManualLotto(String[] winInput) {
         this.lottoArray = new ArrayList<>();
         for (int i = 0; i < winInput.length; i++) {
             this.lottoArray.add(Integer.parseInt(winInput[i]));
@@ -50,14 +50,14 @@ public class LottoGame {
         return lotto;
     }
     
+    public ArrayList<Lotto> getLottos() {
+        return this.lottos;
+    }
+
     public void printLottos() {
         for (Lotto lotto : lottos) {
             lotto.printLotto();
             System.out.println();
         }
-    }
-    
-    Lotto getLotto(int index) {
-        return lottos.get(index);
     }
 }

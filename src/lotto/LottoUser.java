@@ -6,10 +6,17 @@ public class LottoUser {
     private int money;
     private ArrayList<Lotto> lottos = new ArrayList<>();
     private int lottoCount;
+    private int autoLottoCount;
+    private int manualLottoCount;
     
     public LottoUser(int money) {
         this.money = money;
         this.lottoCount = (int)(this.money / 1000);
+    }
+    
+    public void setAutoLottoCount(int autoLottoCount) {
+        this.autoLottoCount = autoLottoCount;
+        this.manualLottoCount = this.lottoCount - this.autoLottoCount;
     }
     
     public int getMoney() {
@@ -19,10 +26,17 @@ public class LottoUser {
     public int getLottoCount() {
         return this.lottoCount;
     }
+    public int getAutoLottoCount() {
+        return this.autoLottoCount;
+    }
+    public int getManualLottoCount() {
+        return this.manualLottoCount;
+    }
     
     public void buyLottos() {
-        LottoGame lottoGame = new LottoGame(this.money);
-        this.lottos = lottoGame.generateLottos();
+        LottoGame lottoGame = new LottoGame(this.autoLottoCount);
+        lottoGame.generateAutoLottos();
+        this.lottos = lottoGame.getLottos();
     }
     public ArrayList<Lotto> getLottos() {
         return this.lottos;

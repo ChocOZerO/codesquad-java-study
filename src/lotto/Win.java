@@ -1,27 +1,37 @@
 package lotto;
 
+import java.util.ArrayList;
+
 public class Win {
     private Lotto win;
     private String winInput;
     private int bonus;
     
-    LottoGame lottoGame = new LottoGame(1000);
+    LottoGame lottoGame = new LottoGame(1);
     
     public Win(String winInput) {
         this.winInput = winInput;
         if ("lottery".equals(this.winInput)) this.getAutoLotto();
-        else this.getWinLotto();
+        else this.getManualLotto();
+    }
+    
+    public Lotto getWin() {
+        return this.win;
     }
     
     private void getAutoLotto() {
-        this.win = lottoGame.generateAutoWinLotto();
+        lottoGame.generateAutoLottos();
+        this.win = lottoGame.getLottos().get(0);
         this.setBonus();
     }
     
-    private void getWinLotto() {
-        String[] winInputTmp = this.winInput.split(", ");
-        this.win = lottoGame.generateWinLotto(winInputTmp);
-        if (winInputTmp.length > 6) this.bonus = Integer.parseInt(winInputTmp[6]);
+    private void getManualLotto() {
+        String[] manual = this.winInput.split(", ");
+        ArrayList<String[]> manuals = new ArrayList<>();
+        manuals.add(manual);
+        lottoGame.generateManualLottos(manuals);
+        this.win = lottoGame.getLottos().get(0);
+        if (manual.length > 6) this.bonus = Integer.parseInt(manual[6]);
         else this.setBonus();
     }
     
@@ -37,7 +47,7 @@ public class Win {
     }
     
     private boolean checkNums(int random) {
-        if (this.getWin().isContains(random)) return true;
+        if (this.win.isContains(random)) return true;
         return false;
     }
     
@@ -45,7 +55,4 @@ public class Win {
         return this.bonus;
     }
     
-    public Lotto getWin() {
-        return this.win;
-    }
 }
