@@ -39,7 +39,7 @@ public class LottoMain {
         System.out.println("5개 일치 (1500000원) : " + lc.getMatch5() + " 개");
         System.out.println("5개 일치, 보너스 볼 일치 (30000000원) : " + lc.getMatch5() + " 개");
         System.out.println("6개 일치 (2000000000원) : " + lc.getMatch6() + " 개");
-        Rewards rewards = new Rewards(lc.getMatch3(), lc.getMatch4(), lc.getMatch5(), lc.getMatch6());
+        Rewards rewards = new Rewards(lc.getMatch3(), lc.getMatch4(), lc.getMatch5(), lc.getMatch5Bonus(), lc.getMatch6());
         System.out.println("총 수익률은 " + rewards.getRefundRate(money) + "% 입니다.");
         
         sc.close();

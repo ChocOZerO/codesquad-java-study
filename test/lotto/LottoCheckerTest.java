@@ -9,6 +9,7 @@ public class LottoCheckerTest {
     @Test
     public void testInputWinLotto() {
         LottoUser lottoUser = new LottoUser(15000);
+        lottoUser.setAutoLottoCount(lottoUser.getLottoCount());
         lottoUser.buyLottos();
         lottoUser.printLottos();
         System.out.println("-------------");
@@ -32,6 +33,7 @@ public class LottoCheckerTest {
     @Test
     public void testAutoWinLotto() throws Exception {
         LottoUser lottoUser = new LottoUser(15000);
+        lottoUser.setAutoLottoCount(lottoUser.getLottoCount());
         lottoUser.buyLottos();
         lottoUser.printLottos();
         System.out.println("-------------");
