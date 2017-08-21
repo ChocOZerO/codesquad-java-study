@@ -8,8 +8,16 @@ public class PawnTest {
 
     @Test
     public void create() {
-        Pawn pawn = new Pawn("white");
-        assertEquals("white", pawn.getColor());
+        String whiteColor = "white";
+        String blackColor = "black";
+        
+        verifyPawn(whiteColor);
+        verifyPawn(blackColor);
+    }
+    
+    void verifyPawn(final String color) {
+        Pawn pawn = new Pawn(color);
+        assertEquals(color, pawn.getColor());
     }
 
 }
