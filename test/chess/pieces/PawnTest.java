@@ -6,9 +6,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class PawnTest {
-    Pawn pawn;
-    String whiteColor = Pawn.WHITE_COLOR;
-    String blackColor = Pawn.BLACK_COLOR;
+    private Pawn pawn;
+    
+    private String whiteColor = Pawn.WHITE_COLOR;
+    private String blackColor = Pawn.BLACK_COLOR;
+    
+    private char whiteRepresentation = Pawn.WHITE_REPRESENTATION;
+    private char blackRepresentation = Pawn.BLACK_REPRESENTATION;
     
     @Before
     public void setup() {
@@ -16,20 +20,20 @@ public class PawnTest {
     }
     
     @Test
-    public void create() {
-        verifyPawn(whiteColor);
-        verifyPawn(blackColor);
+    public void create_empty() {
+        assertEquals(whiteColor, pawn.getColor());
+        assertEquals(whiteRepresentation, pawn.getRepresentation());
     }
     
     @Test
-    public void create_empty() {
-        verifyPawn("");
-        assertEquals(whiteColor, pawn.getColor());
+    public void create() {
+        verifyPawn(whiteColor, whiteRepresentation);
+        verifyPawn(blackColor, blackRepresentation);
     }
     
-    void verifyPawn(final String color) {
-        Pawn pawn = new Pawn(color);
+    void verifyPawn(final String color, final char representation) {
+        Pawn pawn = new Pawn(color, representation);
         assertEquals(color, pawn.getColor());
+        assertEquals(representation, pawn.getRepresentation());
     }
-
 }
