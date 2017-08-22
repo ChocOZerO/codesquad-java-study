@@ -1,62 +1,95 @@
 package chess;
 
+import static utils.StringUtils.appendNewLine;
+
 import java.util.ArrayList;
 
-import chess.pieces.Pawn;
+import chess.pieces.Piece;
 
 public class Board {
-    ArrayList<Pawn> whitePawns = new ArrayList<>();
-    ArrayList<Pawn> blackPawns = new ArrayList<>();
+    private static int pieceCount = 0;
+    ArrayList<Piece> whitePawns = new ArrayList<>();
+    ArrayList<Piece> whitePieces = new ArrayList<>();
+    ArrayList<Piece> blackPawns = new ArrayList<>();
+    ArrayList<Piece> blackPieces = new ArrayList<>();
     
-    void addWhitePawn(Pawn pawn) {
+    private void addWhitePawn(Piece pawn) {
         this.whitePawns.add(pawn);
+        pieceCount++;
     }
-    void addBlackPawn(Pawn pawn) {
+    private void addWhitePiece(Piece piece) {
+        this.whitePieces.add(piece);
+        pieceCount++;
+    }
+    private void addBlackPawn(Piece pawn) {
         this.blackPawns.add(pawn);
+        pieceCount++;
+    }
+    private void addBlackPiece(Piece piece) {
+        this.blackPieces.add(piece);
+        pieceCount++;
     }
     
-    int size() {
-        return this.whitePawns.size() + this.blackPawns.size();
-    }
-    
-    Pawn findWhitePawn(int index) {
-        return this.whitePawns.get(index);
-    }
-    Pawn findBlackPawn(int index) {
-        return this.blackPawns.get(index);
+    int pieceCount() {
+        return pieceCount;
     }
     
     void initialize() {
+        addWhitePiece(Piece.createWhiteRook());
+        addWhitePiece(Piece.createWhiteKnight());
+        addWhitePiece(Piece.createWhiteBishop());
+        addWhitePiece(Piece.createWhiteQueen());
+        addWhitePiece(Piece.createWhiteKing());
+        addWhitePiece(Piece.createWhiteBishop());
+        addWhitePiece(Piece.createWhiteKnight());
+        addWhitePiece(Piece.createWhiteRook());
         for (int i = 0; i < 8; i++) {
-            whitePawns.add(new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION));
-            blackPawns.add(new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
+            addWhitePawn(Piece.createWhitePawn());
+            addBlackPawn(Piece.createBlackPawn());
         }
+        addBlackPiece(Piece.createBlackRook());
+        addBlackPiece(Piece.createBlackKnight());
+        addBlackPiece(Piece.createBlackBishop());
+        addBlackPiece(Piece.createBlackQueen());
+        addBlackPiece(Piece.createBlackKing());
+        addBlackPiece(Piece.createBlackBishop());
+        addBlackPiece(Piece.createBlackKnight());
+        addBlackPiece(Piece.createBlackRook());
     }
-    private String getPawnsResult(ArrayList<Pawn> pawns) {
+    
+    private String getPawnsResult(ArrayList<Piece> pawns) {
         StringBuilder sb = new StringBuilder();
-        for (Pawn pawn: pawns) {
+        for (Piece pawn: pawns) {
             sb.append(pawn.getRepresentation());
         }
         return sb.toString();
     }
-    String getWhitePawnsResult() {
+    private String getWhitePawnsResult() {
         return this.getPawnsResult(whitePawns);
     }
-    String getBlackPawnsResult() {
+    private String getWhitePiecesResult() {
+        return this.getPawnsResult(whitePieces);
+    }
+    private String getBlackPawnsResult() {
         return this.getPawnsResult(blackPawns);
+    }
+    private String getBlackPiecesResult() {
+        return this.getPawnsResult(blackPieces);
     }
     
     private String getBlankLine() {
         return "........";
     }
-    
-    void print() {
+    String showBoard() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 8; i++) {
-            if (i == 1) sb.append(this.getWhitePawnsResult() + "\n");
-            else if (i == 6) sb.append(this.getBlackPawnsResult() + "\n");
-            else sb.append(this.getBlankLine() + "\n");
+        String blankLine = appendNewLine(this.getBlankLine()); 
+        sb.append(appendNewLine(getBlackPiecesResult()));
+        sb.append(appendNewLine(getBlackPawnsResult()));
+        for (int i = 0; i < 4; i++) {
+            sb.append(blankLine);
         }
-        System.out.println(sb.toString());
+        sb.append(appendNewLine(getWhitePawnsResult()));
+        sb.append(appendNewLine(getWhitePiecesResult()));
+        return sb.toString();
     }
 }
