@@ -18,22 +18,21 @@ public class Board {
     
     int getPieceCount(Color color, Type type) {
         int pieceCount = 0;
-        for (int i = 0; i < this.board.size(); i++) {
-            pieceCount += board.get(i).countPiece(color, type);
+        for (Rank rank : this.board) {
+            pieceCount += rank.countPiece(color, type);
         }
         return pieceCount;
-        
     }
     
-    int countBlankPiece() {
+    private int countBlank() {
         int blankCount = 0;
-        for (int i = 0; i > this.board.size(); i++) {
-            blankCount += this.board.get(i).countPiece(Color.NO_COLOR, Type.NO_PIECE);
+        for (Rank rank: this.board) {
+            blankCount += rank.countPiece(Color.NO_COLOR, Type.NO_PIECE);
         }
         return blankCount;
     }
     int countTotalPiece() {
-        return 32 - countBlankPiece();
+        return 64 - countBlank();
     }
     
     void blankBoard() {
@@ -53,15 +52,28 @@ public class Board {
     
     String showBoard() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < this.board.size(); i++) {
-            sb.append(this.board.get(i).getRankRepresentation() + "\n");
+        for (Rank rank: board) {
+            sb.append(rank.getRankRepresentation() + "\n");
         }
         return sb.toString();
     }
     
     Piece findPiece(String position) {
-        int x = position.charAt(0) - 'a';
-        int y = 8 - Character.getNumericValue(position.charAt(1));
-        return this.board.get(y).getPiece(x);
+        return this.board.get(getYPosition(position)).getPiece(getXPosition(position));
     }
+    private int getXPosition(String position) {
+        return position.charAt(0) - 'a';
+    }
+    private int getYPosition(String position) {
+        return 8 - Character.getNumericValue(position.charAt(1));
+    }
+    
+    void generatePiece(String position, Piece piece) {
+        this.board.get(getYPosition(position)).setPiece(getXPosition(position), piece);
+    }
+    void move(String startPosition, String endPosition, Piece piece) {
+        generatePiece(endPosition, piece);
+        generatePiece(startPosition, Piece.createBlank());
+    }
+    
 }

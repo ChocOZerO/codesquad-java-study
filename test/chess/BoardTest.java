@@ -60,4 +60,28 @@ public class BoardTest {
         assertEquals(Piece.createBlank().getRepresentation(), board.findPiece("f4").getRepresentation());
         assertEquals(Piece.createWhiteRook().getRepresentation(), board.findPiece("a1").getRepresentation());
     }
+    
+    @Test
+    public void generate() throws Exception {
+        board.blankBoard();
+        
+        String position = "b5";
+        Piece piece = Piece.createBlackRook();
+        board.generatePiece(position, piece);
+
+        assertEquals(piece, board.findPiece(position));
+        System.out.println(board.showBoard());
+    }
+    
+    @Test
+    public void move() throws Exception {
+        board.initialize();
+        assertEquals(Piece.createWhiteRook().getRepresentation(), board.findPiece("a1").getRepresentation());
+        String position = "b5";
+        Piece piece = Piece.createBlackRook();
+        board.move("a1" ,position, piece);
+
+        assertEquals(piece, board.findPiece(position));
+        System.out.println(board.showBoard());
+    }
 }
