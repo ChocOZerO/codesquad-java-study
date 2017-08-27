@@ -54,4 +54,9 @@ public class PieceTest {
         assertTrue(Piece.createBlackQueen().isBlack());
         assertTrue(Piece.createBlackKing().isBlack());
     }
+    
+    @Test
+    public void checkSamePiece() {
+        assertTrue(Piece.createWhitePawn().checkSamePiece(Color.WHITE, Type.PAWN));
+    }
 }

@@ -2,9 +2,6 @@ package chess;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Test;
 
 import chess.pieces.Piece;
@@ -14,17 +11,31 @@ public class RankTest {
     @Test
     public void testBlankRank() {
         Rank rank = new Rank();
-        List<Piece> blank = rank.getBlankRank();
-        assertEquals('.', blank.get(0).getRepresentation());
-        assertEquals(8, blank.size());
+        
+        assertEquals('.', rank.getPiece(0).getRepresentation());
+        assertEquals(8, rank.getRank().size());
     }
     
     @Test
     public void testRank() {
         Rank rank = new Rank();
-        rank.add(Piece.createBlackBishop());
-        assertEquals('B', rank.get(0).getRepresentation());
-        assertEquals(Piece.Color.BLACK, rank.get(0).getColor());
-        assertEquals(Piece.Type.BISHOP, rank.get(0).getType());
+        rank.setPiece(0, Piece.createBlackBishop());
+        assertEquals('B', rank.getPiece(0).getRepresentation());
+        assertEquals(Piece.Color.BLACK, rank.getPiece(0).getColor());
+        assertEquals(Piece.Type.BISHOP, rank.getPiece(0).getType());
+    }
+    
+    @Test
+    public void countPiece() {
+        Rank rank = new Rank();
+        rank.setPiece(0, Piece.createBlackBishop());
+        rank.setPiece(3, Piece.createBlackBishop());
+        assertEquals(2, rank.countPiece(Piece.Color.BLACK, Piece.Type.BISHOP));
+    }
+    
+    @Test
+    public void chceckRankRepresentation() {
+        Rank rank = new Rank();
+        assertEquals("........", rank.getRankRepresentation());
     }
 }
