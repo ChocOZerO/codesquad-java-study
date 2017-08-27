@@ -40,6 +40,10 @@ public class Piece {
         return this.type.getWhiteRepresentation();
     }
     
+    public boolean checkSamePiece(Color color, Type type) {
+        return (this.color.equals(color) && this.type.equals(type));
+    }
+    
     private static Piece createWhite(Type type) {
         return new Piece(Color.WHITE, type);
     }
