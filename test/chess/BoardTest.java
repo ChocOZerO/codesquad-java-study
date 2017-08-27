@@ -52,4 +52,12 @@ public class BoardTest {
                 + blankLine + blankLine
                 + blankLine + blankLine, board.showBoard());
     }
+    
+    @Test
+    public void position() {
+        board.initialize();
+        assertEquals(Piece.createBlackBishop().getRepresentation(), board.findPiece("f8").getRepresentation());
+        assertEquals(Piece.createBlank().getRepresentation(), board.findPiece("f4").getRepresentation());
+        assertEquals(Piece.createWhiteRook().getRepresentation(), board.findPiece("a1").getRepresentation());
+    }
 }

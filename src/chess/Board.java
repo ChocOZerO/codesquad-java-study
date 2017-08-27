@@ -2,6 +2,7 @@ package chess;
 
 import java.util.ArrayList;
 
+import chess.pieces.Piece;
 import chess.pieces.Piece.Color;
 import chess.pieces.Piece.Type;
 
@@ -56,5 +57,11 @@ public class Board {
             sb.append(this.board.get(i).getRankRepresentation() + "\n");
         }
         return sb.toString();
+    }
+    
+    Piece findPiece(String position) {
+        int x = position.charAt(0) - 'a';
+        int y = 8 - Character.getNumericValue(position.charAt(1));
+        return this.board.get(y).getPiece(x);
     }
 }
