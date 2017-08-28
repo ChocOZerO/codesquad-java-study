@@ -12,7 +12,7 @@ public class RankTest {
     public void testBlankRank() {
         Rank rank = new Rank();
         
-        assertEquals('.', rank.getPiece(0).getRepresentation());
+        assertEquals(Piece.createBlank(), rank.getPiece(0));
         assertEquals(8, rank.getRank().size());
     }
     

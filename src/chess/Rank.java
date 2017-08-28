@@ -73,8 +73,8 @@ public class Rank {
     }
     int countPiece(Color color, Type type) {
         int pieceCount = 0;
-        for (int i = 0; i < this.rank.size(); i++) {
-            if (this.rank.get(i).checkSamePiece(color, type)) {
+        for (Piece piece: this.rank) {
+            if (piece.checkSamePiece(color, type)) {
                 pieceCount++;
             }
         }
@@ -82,8 +82,8 @@ public class Rank {
     }
     String getRankRepresentation() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < this.rank.size(); i++) {
-            sb.append(this.getPiece(i).getRepresentation());
+        for (Piece piece: this.rank) {
+            sb.append(piece.getRepresentation());
         }
         return sb.toString();
     }
