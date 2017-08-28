@@ -6,16 +6,21 @@ public class Piece {
         WHITE, BLACK, NO_COLOR;
     }
     public enum Type {
-        PAWN('p'), KNIGHT('n'), ROOK('r'), BISHOP('b'), QUEEN('q'), KING('k'), NO_PIECE('.');
+        PAWN('p', 1.0), KNIGHT('n', 2.5), ROOK('r', 5.0), BISHOP('b', 3.0), QUEEN('q', 9.0), KING('k', 0.0), NO_PIECE('.', 0.0);
         private final char representation;
-        Type(char representation) {
+        private double score;
+        Type(char representation, double score) {
             this.representation = representation;
+            this.score = score;
         }
         public char getWhiteRepresentation() {
             return this.representation;
         }
         public char getBlackRepresentation() {
             return Character.toUpperCase(this.representation);
+        }
+        public double getScore() {
+            return this.score;
         }
     }
     
@@ -97,5 +102,30 @@ public class Piece {
     }
     public boolean isBlack() {
         return this.color.equals(Color.BLACK);
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((color == null) ? 0 : color.hashCode());
+        result = prime * result + ((type == null) ? 0 : type.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Piece other = (Piece) obj;
+        if (color != other.color)
+            return false;
+        if (type != other.type)
+            return false;
+        return true;
     }
 }

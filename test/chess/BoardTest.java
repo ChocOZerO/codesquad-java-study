@@ -35,12 +35,14 @@ public class BoardTest {
     public void print() throws Exception {
         board.initialize();
         System.out.println(board.showBoard());
+        assertEquals(2, board.getPieceCount(Piece.Color.WHITE, Piece.Type.KNIGHT));
     }
     
     @Test
     public void pieceCount() throws Exception {
         board.blankBoard();
         assertEquals(64, board.getPieceCount(Piece.Color.NO_COLOR, Piece.Type.NO_PIECE));
+        
     }
     
     @Test
@@ -56,9 +58,9 @@ public class BoardTest {
     @Test
     public void position() {
         board.initialize();
-        assertEquals(Piece.createBlackBishop().getRepresentation(), board.findPiece("f8").getRepresentation());
-        assertEquals(Piece.createBlank().getRepresentation(), board.findPiece("f4").getRepresentation());
-        assertEquals(Piece.createWhiteRook().getRepresentation(), board.findPiece("a1").getRepresentation());
+        assertEquals(Piece.createBlackBishop(), board.findPiece("f8"));
+        assertEquals(Piece.createBlank(), board.findPiece("f4"));
+        assertEquals(Piece.createWhiteRook(), board.findPiece("a1"));
     }
     
     @Test
@@ -76,7 +78,7 @@ public class BoardTest {
     @Test
     public void move() throws Exception {
         board.initialize();
-        assertEquals(Piece.createWhiteRook().getRepresentation(), board.findPiece("a1").getRepresentation());
+        assertEquals(Piece.createWhiteRook(), board.findPiece("a1"));
         String position = "b5";
         Piece piece = Piece.createBlackRook();
         board.move("a1" ,position, piece);

@@ -59,4 +59,9 @@ public class PieceTest {
     public void checkSamePiece() {
         assertTrue(Piece.createWhitePawn().checkSamePiece(Color.WHITE, Type.PAWN));
     }
+    
+    @Test
+    public void Score() {
+        System.out.println(Piece.Type.ROOK.getScore());
+    }
 }
