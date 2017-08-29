@@ -6,7 +6,10 @@ import static utils.StringUtils.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import chess.pieces.Bishop;
+import chess.pieces.Blank;
 import chess.pieces.Piece;
+import chess.pieces.Rook;
 
 public class BoardTest {
     
@@ -59,9 +62,9 @@ public class BoardTest {
     @Test
     public void position() {
         board.initialize();
-        assertEquals(Piece.createBlackBishop(), board.findPiece("f8"));
-        assertEquals(Piece.createBlank(), board.findPiece("f4"));
-        assertEquals(Piece.createWhiteRook(), board.findPiece("a1"));
+        assertEquals(Bishop.createBlackBishop("f8"), board.findPiece("f8"));
+        assertEquals(Blank.createBlank("f4"), board.findPiece("f4"));
+        assertEquals(Rook.createWhiteRook("a1"), board.findPiece("a1"));
     }
     
     @Test
@@ -69,7 +72,7 @@ public class BoardTest {
         board.blankBoard();
         
         String target = "b5";
-        Piece piece = Piece.createBlackRook();
+        Piece piece = Rook.createBlackRook("b5");
         
         board.generatePiece(target, piece);
 
@@ -78,13 +81,26 @@ public class BoardTest {
     }
     
     @Test
-    public void move() throws Exception {
+    public void moveNotAvailable() throws Exception {
         board.initialize();
         
         String target = "b5";
         String order = "a1";
         Piece piece = board.findPiece(order); 
-        assertEquals(Piece.createWhiteRook(), piece);
+        assertEquals(Rook.createWhiteRook(order), piece);
+        board.move(order , target);
+
+        assertEquals(piece, board.findPiece(target));
+        System.out.println(board.showBoard());
+    }
+    @Test
+    public void moveAvailable() throws Exception {
+        board.initialize();
+        
+        String target = "a5";
+        String order = "a1";
+        Piece piece = board.findPiece(order); 
+        assertEquals(Rook.createWhiteRook(order), piece);
         board.move(order , target);
 
         assertEquals(piece, board.findPiece(target));
@@ -98,7 +114,7 @@ public class BoardTest {
         String target = "a2";
         String order = "a1";
         Piece piece = board.findPiece(order); 
-        assertEquals(Piece.createWhiteRook(), piece);
+        assertEquals(Rook.createWhiteRook(order), piece);
         board.move(order , target); // 같은 편이 있는 자리입니다.
 
         assertEquals(piece, board.findPiece(target));

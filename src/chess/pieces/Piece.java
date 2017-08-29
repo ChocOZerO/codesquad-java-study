@@ -1,6 +1,9 @@
 package chess.pieces;
 
-public class Piece {
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Piece {
     
     public enum Color {
         WHITE, BLACK, NO_COLOR;
@@ -28,10 +31,23 @@ public class Piece {
     private Type type;
     private String position;
     
-    private Piece(Color color, Type type) {
+    List<String> moveAvailable;
+    
+    public int getXPosition() {
+        return this.position.charAt(0) - 'a';
+    }
+    public int getYPosition() {
+        return 8 - Character.getNumericValue(this.position.charAt(1));
+    }
+    
+    protected Piece(Color color, Type type, String position) {
         this.color = color;
         this.type = type;
+        this.position = position;
     }
+    
+    public abstract boolean checkMoveAvailable(String target);
+    protected abstract void setMoveAvailable();
     
     public Color getColor() {
         return this.color;
@@ -59,54 +75,6 @@ public class Piece {
         return this.color.equals(target.color);
     }
     
-    private static Piece createWhite(Type type) {
-        return new Piece(Color.WHITE, type);
-    }
-    private static Piece createBlack(Type type) {
-        return new Piece(Color.BLACK, type);
-    }
-    
-    public static Piece createWhitePawn() {
-        return createWhite(Type.PAWN);
-    }
-    public static Piece createBlackPawn() {
-        return createBlack(Type.PAWN);
-    }
-    public static Piece createWhiteKnight() {
-        return createWhite(Type.KNIGHT);
-    }
-    public static Piece createBlackKnight() {
-        return createBlack(Type.KNIGHT);
-    }
-    public static Piece createWhiteRook() {
-        return createWhite(Type.ROOK);
-    }
-    public static Piece createBlackRook() {
-        return createBlack(Type.ROOK);
-    }
-    public static Piece createWhiteBishop() {
-        return createWhite(Type.BISHOP);
-    }
-    public static Piece createBlackBishop() {
-        return createBlack(Type.BISHOP);
-    }
-    public static Piece createWhiteQueen() {
-        return createWhite(Type.QUEEN);
-    }
-    public static Piece createBlackQueen() {
-        return createBlack(Type.QUEEN);
-    }
-    public static Piece createWhiteKing() {
-        return createWhite(Type.KING);
-    }
-    public static Piece createBlackKing() {
-        return createBlack(Type.KING);
-    }
-    
-    public static Piece createBlank() {
-        return new Piece(Color.NO_COLOR, Type.NO_PIECE);
-    }
-
     public boolean isWhite() {
         return this.color.equals(Color.WHITE);
     }

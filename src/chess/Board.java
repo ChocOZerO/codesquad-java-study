@@ -68,7 +68,7 @@ public class Board {
     }
     
     void generatePiece(String target, Piece piece) {
-        this.position.generatePiece(target, piece);
+        this.position.replacePiece(target, piece);
     }
     void move(String startPosition, String endPosition) {
         this.position.move(startPosition, endPosition);
