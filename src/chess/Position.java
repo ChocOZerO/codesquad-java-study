@@ -1,5 +1,6 @@
 package chess;
 
+import chess.pieces.Blank;
 import chess.pieces.InvalidTargetPosition;
 import chess.pieces.Piece;
 
@@ -30,8 +31,11 @@ public class Position {
         if (orderPiece.checkSameTeam(targetPiece)) {
             throw new InvalidTargetPosition("같은 편이 있는 자리 입니다.");
         }
+        if (!orderPiece.checkMoveAvailable(endPosition)) {
+            throw new InvalidTargetPosition("불가능한 위치 입니다.");
+        }
         replacePiece(endPosition, orderPiece);
-        replacePiece(startPosition, Piece.createBlank(startPosition));
+        replacePiece(startPosition, Blank.createBlank(startPosition));
     }
     
 }
