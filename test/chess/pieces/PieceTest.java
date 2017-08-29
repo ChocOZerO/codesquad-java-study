@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import chess.Board;
 import chess.pieces.Piece.Color;
 import chess.pieces.Piece.Type;
 
@@ -64,4 +65,13 @@ public class PieceTest {
     public void Score() {
         System.out.println(Piece.Type.ROOK.getScore());
     }
+    
+    /* 다음 단계
+    @Test
+    public void getPosition() {
+        Board board = new Board();
+        board.initialize();
+        assertEquals("c7", Piece.createBlackKnight().getPosition());
+    }
+    */
 }

@@ -11,6 +11,7 @@ import chess.pieces.Piece;
 public class BoardTest {
     
     private Board board;
+    Position position;
     
     @Before
     public void setup() {
@@ -67,23 +68,41 @@ public class BoardTest {
     public void generate() throws Exception {
         board.blankBoard();
         
-        String position = "b5";
+        String target = "b5";
         Piece piece = Piece.createBlackRook();
-        board.generatePiece(position, piece);
+        
+        board.generatePiece(target, piece);
 
-        assertEquals(piece, board.findPiece(position));
+        assertEquals(piece, board.findPiece(target));
         System.out.println(board.showBoard());
     }
     
     @Test
     public void move() throws Exception {
         board.initialize();
-        assertEquals(Piece.createWhiteRook(), board.findPiece("a1"));
-        String position = "b5";
-        Piece piece = Piece.createBlackRook();
-        board.move("a1" ,position, piece);
+        
+        String target = "b5";
+        String order = "a1";
+        Piece piece = board.findPiece(order); 
+        assertEquals(Piece.createWhiteRook(), piece);
+        board.move(order , target);
 
-        assertEquals(piece, board.findPiece(position));
+        assertEquals(piece, board.findPiece(target));
         System.out.println(board.showBoard());
     }
+    
+    @Test
+    public void moveToSameTeam() throws Exception {
+        board.initialize();
+        
+        String target = "a2";
+        String order = "a1";
+        Piece piece = board.findPiece(order); 
+        assertEquals(Piece.createWhiteRook(), piece);
+        board.move(order , target); // 같은 편이 있는 자리입니다.
+
+        assertEquals(piece, board.findPiece(target));
+        System.out.println(board.showBoard());
+    }
+    
 }

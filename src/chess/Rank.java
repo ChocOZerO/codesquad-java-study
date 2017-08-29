@@ -9,9 +9,11 @@ import chess.pieces.Piece.Type;
 
 public class Rank {
     private List<Piece> rank = new ArrayList<>();
+    private int rankNum;
     
-    Rank() {
+    Rank(int rankNum) {
         setBlankRank();
+        this.rankNum = 8 - rankNum;
     }
     
     public void setPiece(int index, Piece piece) {
@@ -21,6 +23,9 @@ public class Rank {
         return this.rank.get(index);
     }
     
+    int getRankNum() {
+        return this.rankNum;
+    }
     private void setBlankRank() {
         for (int i = 0; i < 8; i++) {
             this.rank.add(Piece.createBlank());
