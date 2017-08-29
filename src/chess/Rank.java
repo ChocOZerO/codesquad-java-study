@@ -28,48 +28,48 @@ public class Rank {
     }
     private void setBlankRank() {
         for (int i = 0; i < 8; i++) {
-            this.rank.add(Piece.createBlank());
+            this.rank.add(Piece.createBlank(String.valueOf((char)(97+i)) + this.rankNum));
         }
     }
     public List<Piece> getBlankRank() {
         for (int i = 0; i < 8; i++) { 
-            this.rank.set(i, Piece.createBlank());
+            this.rank.set(i, Piece.createBlank(String.valueOf((char)(97+i)) + this.rankNum));
         }
         return this.rank;
     }
     
     public List<Piece> initializeWhitePawnRank() {
         for (int i = 0; i < 8; i++) { 
-            this.rank.set(i, Piece.createWhitePawn());
+            this.rank.set(i, Piece.createWhitePawn(String.valueOf((char)(97+i)) + this.rankNum));
         }
         return this.rank;
     }
     public List<Piece> initializeWhitePieceRank() {
-        this.rank.set(0, Piece.createWhiteRook());
-        this.rank.set(1, Piece.createWhiteKnight());
-        this.rank.set(2, Piece.createWhiteBishop());
-        this.rank.set(3, Piece.createWhiteQueen());
-        this.rank.set(4, Piece.createWhiteKing());
-        this.rank.set(5, Piece.createWhiteBishop());
-        this.rank.set(6, Piece.createWhiteKnight());
-        this.rank.set(7, Piece.createWhiteRook());
+        this.rank.set(0, Piece.createWhiteRook(String.valueOf((char)(97+0)) + this.rankNum));
+        this.rank.set(1, Piece.createWhiteKnight(String.valueOf((char)(97+1)) + this.rankNum));
+        this.rank.set(2, Piece.createWhiteBishop(String.valueOf((char)(97+2)) + this.rankNum));
+        this.rank.set(3, Piece.createWhiteQueen(String.valueOf((char)(97+3)) + this.rankNum));
+        this.rank.set(4, Piece.createWhiteKing(String.valueOf((char)(97+4)) + this.rankNum));
+        this.rank.set(5, Piece.createWhiteBishop(String.valueOf((char)(97+5)) + this.rankNum));
+        this.rank.set(6, Piece.createWhiteKnight(String.valueOf((char)(97+6)) + this.rankNum));
+        this.rank.set(7, Piece.createWhiteRook(String.valueOf((char)(97+7)) + this.rankNum));
         return this.rank;
     }
     public List<Piece> initializeBlackPawnRank() {
         for (int i = 0; i < 8; i++) { 
-            this.rank.set(i, Piece.createBlackPawn());
+            this.rank.set(i, Piece.createBlackPawn(String.valueOf((char)(97+i)) + this.rankNum));
         }
         return this.rank;
     }
     public List<Piece> initializeBlackPieceRank() {
-        this.rank.set(0, Piece.createBlackRook());
-        this.rank.set(1, Piece.createBlackKnight());
-        this.rank.set(2, Piece.createBlackBishop());
-        this.rank.set(3, Piece.createBlackQueen());
-        this.rank.set(4, Piece.createBlackKing());
-        this.rank.set(5, Piece.createBlackBishop());
-        this.rank.set(6, Piece.createBlackKnight());
-        this.rank.set(7, Piece.createBlackRook());
+        this.rank.set(0, Piece.createBlackRook(String.valueOf((char)(97+0)) + this.rankNum));
+        this.rank.set(1, Piece.createBlackKnight(String.valueOf((char)(97+1)) + this.rankNum));
+        this.rank.set(2, Piece.createBlackBishop(String.valueOf((char)(97+2)) + this.rankNum));
+        this.rank.set(3, Piece.createBlackQueen(String.valueOf((char)(97+3)) + this.rankNum));
+        this.rank.set(4, Piece.createBlackKing(String.valueOf((char)(97+4)) + this.rankNum));
+        this.rank.set(5, Piece.createBlackBishop(String.valueOf((char)(97+5)) + this.rankNum));
+        this.rank.set(6, Piece.createBlackKnight(String.valueOf((char)(97+6)) + this.rankNum));
+        this.rank.set(7, Piece.createBlackRook(String.valueOf((char)(97+7)) + this.rankNum));
         return this.rank;
     }
     

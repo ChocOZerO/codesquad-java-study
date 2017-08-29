@@ -59,9 +59,9 @@ public class BoardTest {
     @Test
     public void position() {
         board.initialize();
-        assertEquals(Piece.createBlackBishop(), board.findPiece("f8"));
-        assertEquals(Piece.createBlank(), board.findPiece("f4"));
-        assertEquals(Piece.createWhiteRook(), board.findPiece("a1"));
+        assertEquals(Piece.createBlackBishop("f8"), board.findPiece("f8"));
+        assertEquals(Piece.createBlank("f4"), board.findPiece("f4"));
+        assertEquals(Piece.createWhiteRook("a1"), board.findPiece("a1"));
     }
     
     @Test
@@ -69,7 +69,7 @@ public class BoardTest {
         board.blankBoard();
         
         String target = "b5";
-        Piece piece = Piece.createBlackRook();
+        Piece piece = Piece.createBlackRook("b5");
         
         board.generatePiece(target, piece);
 
@@ -84,7 +84,7 @@ public class BoardTest {
         String target = "b5";
         String order = "a1";
         Piece piece = board.findPiece(order); 
-        assertEquals(Piece.createWhiteRook(), piece);
+        assertEquals(Piece.createWhiteRook(order), piece);
         board.move(order , target);
 
         assertEquals(piece, board.findPiece(target));
@@ -98,7 +98,7 @@ public class BoardTest {
         String target = "a2";
         String order = "a1";
         Piece piece = board.findPiece(order); 
-        assertEquals(Piece.createWhiteRook(), piece);
+        assertEquals(Piece.createWhiteRook(order), piece);
         board.move(order , target); // 같은 편이 있는 자리입니다.
 
         assertEquals(piece, board.findPiece(target));

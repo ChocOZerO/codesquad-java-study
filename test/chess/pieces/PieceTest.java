@@ -18,14 +18,14 @@ public class PieceTest {
     
     @Test
     public void create_piece() {
-        verifyPiece(Piece.createWhitePawn(), Piece.createBlackPawn(), Type.PAWN);
-        verifyPiece(Piece.createWhiteKnight(), Piece.createBlackKnight(), Type.KNIGHT);
-        verifyPiece(Piece.createWhiteRook(), Piece.createBlackRook(), Type.ROOK);
-        verifyPiece(Piece.createWhiteBishop(), Piece.createBlackBishop(), Type.BISHOP);
-        verifyPiece(Piece.createWhiteQueen(), Piece.createBlackQueen(), Type.QUEEN);
-        verifyPiece(Piece.createWhiteKing(), Piece.createBlackKing(), Type.KING);
+        verifyPiece(Piece.createWhitePawn("a1"), Piece.createBlackPawn("a1"), Type.PAWN);
+        verifyPiece(Piece.createWhiteKnight("a1"), Piece.createBlackKnight("a1"), Type.KNIGHT);
+        verifyPiece(Piece.createWhiteRook("a1"), Piece.createBlackRook("a1"), Type.ROOK);
+        verifyPiece(Piece.createWhiteBishop("a1"), Piece.createBlackBishop("a1"), Type.BISHOP);
+        verifyPiece(Piece.createWhiteQueen("a1"), Piece.createBlackQueen("a1"), Type.QUEEN);
+        verifyPiece(Piece.createWhiteKing("a1"), Piece.createBlackKing("a1"), Type.KING);
 
-        Piece blank = Piece.createBlank();
+        Piece blank = Piece.createBlank("a1");
         assertFalse(blank.isWhite());
         assertFalse(blank.isBlack());
         assertEquals(Type.NO_PIECE, blank.getType());
@@ -41,24 +41,24 @@ public class PieceTest {
     
     @Test
     public void isWhiteAndBlack() throws Exception {
-        assertTrue(Piece.createWhitePawn().isWhite());
-        assertTrue(Piece.createWhiteRook().isWhite());
-        assertTrue(Piece.createWhiteKnight().isWhite());
-        assertTrue(Piece.createWhiteBishop().isWhite());
-        assertTrue(Piece.createWhiteQueen().isWhite());
-        assertTrue(Piece.createWhiteKing().isWhite());
+        assertTrue(Piece.createWhitePawn("a1").isWhite());
+        assertTrue(Piece.createWhiteRook("a1").isWhite());
+        assertTrue(Piece.createWhiteKnight("a1").isWhite());
+        assertTrue(Piece.createWhiteBishop("a1").isWhite());
+        assertTrue(Piece.createWhiteQueen("a1").isWhite());
+        assertTrue(Piece.createWhiteKing("a1").isWhite());
         
-        assertTrue(Piece.createBlackPawn().isBlack());
-        assertTrue(Piece.createBlackRook().isBlack());
-        assertTrue(Piece.createBlackKnight().isBlack());
-        assertTrue(Piece.createBlackBishop().isBlack());
-        assertTrue(Piece.createBlackQueen().isBlack());
-        assertTrue(Piece.createBlackKing().isBlack());
+        assertTrue(Piece.createBlackPawn("a1").isBlack());
+        assertTrue(Piece.createBlackRook("a1").isBlack());
+        assertTrue(Piece.createBlackKnight("a1").isBlack());
+        assertTrue(Piece.createBlackBishop("a1").isBlack());
+        assertTrue(Piece.createBlackQueen("a1").isBlack());
+        assertTrue(Piece.createBlackKing("a1").isBlack());
     }
     
     @Test
     public void checkSamePiece() {
-        assertTrue(Piece.createWhitePawn().checkSamePiece(Color.WHITE, Type.PAWN));
+        assertTrue(Piece.createWhitePawn("a1").checkSamePiece(Color.WHITE, Type.PAWN));
     }
     
     @Test

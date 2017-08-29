@@ -9,14 +9,25 @@ public class Score {
         this.board = board;
     }
     
+    private double getWhiteScore() {
+        return getScore(Color.WHITE);
+    }
+    private double getBlackScore() {
+        return getScore(Color.BLACK);
+    }
     double getScore(Color color) {
-        int whiteScore = 0;
-        whiteScore += getPawnScore(color);
-        whiteScore += getRookScore(color);
-        whiteScore += getKnightScore(color);
-        whiteScore += getBishopScore(color);
-        whiteScore += getQueenScore(color);
-        return whiteScore;
+        double score = 0.0;
+        score += getPawnScore(color);
+        score += getRookScore(color);
+        score += getKnightScore(color);
+        score += getBishopScore(color);
+        score += getQueenScore(color);
+        return score;
+    }
+    
+    Color getWinner() {
+        if (getBlackScore() > getWhiteScore()) return Color.BLACK;
+        return Color.WHITE;
     }
     
     private double getPawnScore(Color color) {

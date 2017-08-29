@@ -28,9 +28,10 @@ public class Piece {
     private Type type;
     private String position;
     
-    private Piece(Color color, Type type) {
+    private Piece(Color color, Type type, String position) {
         this.color = color;
         this.type = type;
+        this.position = position;
     }
     
     public Color getColor() {
@@ -59,52 +60,52 @@ public class Piece {
         return this.color.equals(target.color);
     }
     
-    private static Piece createWhite(Type type) {
-        return new Piece(Color.WHITE, type);
+    private static Piece createWhite(Type type, String position) {
+        return new Piece(Color.WHITE, type, position);
     }
-    private static Piece createBlack(Type type) {
-        return new Piece(Color.BLACK, type);
-    }
-    
-    public static Piece createWhitePawn() {
-        return createWhite(Type.PAWN);
-    }
-    public static Piece createBlackPawn() {
-        return createBlack(Type.PAWN);
-    }
-    public static Piece createWhiteKnight() {
-        return createWhite(Type.KNIGHT);
-    }
-    public static Piece createBlackKnight() {
-        return createBlack(Type.KNIGHT);
-    }
-    public static Piece createWhiteRook() {
-        return createWhite(Type.ROOK);
-    }
-    public static Piece createBlackRook() {
-        return createBlack(Type.ROOK);
-    }
-    public static Piece createWhiteBishop() {
-        return createWhite(Type.BISHOP);
-    }
-    public static Piece createBlackBishop() {
-        return createBlack(Type.BISHOP);
-    }
-    public static Piece createWhiteQueen() {
-        return createWhite(Type.QUEEN);
-    }
-    public static Piece createBlackQueen() {
-        return createBlack(Type.QUEEN);
-    }
-    public static Piece createWhiteKing() {
-        return createWhite(Type.KING);
-    }
-    public static Piece createBlackKing() {
-        return createBlack(Type.KING);
+    private static Piece createBlack(Type type, String position) {
+        return new Piece(Color.BLACK, type, position);
     }
     
-    public static Piece createBlank() {
-        return new Piece(Color.NO_COLOR, Type.NO_PIECE);
+    public static Piece createWhitePawn(String position) {
+        return createWhite(Type.PAWN, position);
+    }
+    public static Piece createBlackPawn(String position) {
+        return createBlack(Type.PAWN, position);
+    }
+    public static Piece createWhiteKnight(String position) {
+        return createWhite(Type.KNIGHT, position);
+    }
+    public static Piece createBlackKnight(String position) {
+        return createBlack(Type.KNIGHT, position);
+    }
+    public static Piece createWhiteRook(String position) {
+        return createWhite(Type.ROOK, position);
+    }
+    public static Piece createBlackRook(String position) {
+        return createBlack(Type.ROOK, position);
+    }
+    public static Piece createWhiteBishop(String position) {
+        return createWhite(Type.BISHOP, position);
+    }
+    public static Piece createBlackBishop(String position) {
+        return createBlack(Type.BISHOP, position);
+    }
+    public static Piece createWhiteQueen(String position) {
+        return createWhite(Type.QUEEN, position);
+    }
+    public static Piece createBlackQueen(String position) {
+        return createBlack(Type.QUEEN, position);
+    }
+    public static Piece createWhiteKing(String position) {
+        return createWhite(Type.KING, position);
+    }
+    public static Piece createBlackKing(String position) {
+        return createBlack(Type.KING, position);
+    }
+    
+    public static Piece createBlank(String position) {
+        return new Piece(Color.NO_COLOR, Type.NO_PIECE, position);
     }
 
     public boolean isWhite() {
