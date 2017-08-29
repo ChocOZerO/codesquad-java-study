@@ -26,6 +26,7 @@ public class Piece {
     
     private Color color;
     private Type type;
+    private String position;
     
     private Piece(Color color, Type type) {
         this.color = color;
@@ -44,9 +45,18 @@ public class Piece {
         }
         return this.type.getWhiteRepresentation();
     }
+    public String getPosition() {
+        return this.position;
+    }
+    public void setPosition(String position) {
+        this.position = position;
+    }
     
     public boolean checkSamePiece(Color color, Type type) {
         return (this.color.equals(color) && this.type.equals(type));
+    }
+    public boolean checkSameTeam(Piece target) {
+        return this.color.equals(target.color);
     }
     
     private static Piece createWhite(Type type) {

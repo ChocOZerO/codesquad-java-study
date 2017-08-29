@@ -9,11 +9,12 @@ import chess.pieces.Piece.Type;
 public class Board {
     
     ArrayList<Rank> board = new ArrayList<>();
-    
-    Board() {
+    Position position;
+    public Board() {
         for (int i = 0; i < 8; i++) {
-            this.board.add(new Rank());
+            this.board.add(new Rank(i));
         }
+        position = new Position(this);
     }
     
     int getPieceCount(Color color, Type type) {
@@ -22,6 +23,10 @@ public class Board {
             pieceCount += rank.countPiece(color, type);
         }
         return pieceCount;
+    }
+    
+    public Rank getRank(int index) {
+        return this.board.get(index);
     }
     
     private int countBlank() {
@@ -35,12 +40,12 @@ public class Board {
         return 64 - countBlank();
     }
     
-    void blankBoard() {
+    public void blankBoard() {
         for (int i = 0; i < this.board.size(); i++) {
-            board.set(i, new Rank());
+            board.set(i, new Rank(i));
         }
     }
-    void initialize() {
+    public void initialize() {
         this.board.get(0).initializeBlackPieceRank();
         this.board.get(1).initializeBlackPawnRank();
         for (int i = 2; i <= 5; i++) {
@@ -58,22 +63,15 @@ public class Board {
         return sb.toString();
     }
     
-    Piece findPiece(String position) {
-        return this.board.get(getYPosition(position)).getPiece(getXPosition(position));
-    }
-    private int getXPosition(String position) {
-        return position.charAt(0) - 'a';
-    }
-    private int getYPosition(String position) {
-        return 8 - Character.getNumericValue(position.charAt(1));
+    Piece findPiece(String target) {
+        return position.findPiece(target);
     }
     
-    void generatePiece(String position, Piece piece) {
-        this.board.get(getYPosition(position)).setPiece(getXPosition(position), piece);
+    void generatePiece(String target, Piece piece) {
+        this.position.generatePiece(target, piece);
     }
-    void move(String startPosition, String endPosition, Piece piece) {
-        generatePiece(endPosition, piece);
-        generatePiece(startPosition, Piece.createBlank());
+    void move(String startPosition, String endPosition) {
+        this.position.move(startPosition, endPosition);
     }
     
 }
