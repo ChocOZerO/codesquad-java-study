@@ -81,10 +81,23 @@ public class BoardTest {
     }
     
     @Test
-    public void move() throws Exception {
+    public void moveNotAvailable() throws Exception {
         board.initialize();
         
         String target = "b5";
+        String order = "a1";
+        Piece piece = board.findPiece(order); 
+        assertEquals(Rook.createWhiteRook(order), piece);
+        board.move(order , target);
+
+        assertEquals(piece, board.findPiece(target));
+        System.out.println(board.showBoard());
+    }
+    @Test
+    public void moveAvailable() throws Exception {
+        board.initialize();
+        
+        String target = "a5";
         String order = "a1";
         Piece piece = board.findPiece(order); 
         assertEquals(Rook.createWhiteRook(order), piece);
