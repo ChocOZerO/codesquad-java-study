@@ -12,13 +12,18 @@ public class Position {
     }
     
     Piece findPiece(String position) {
+        if (position.length() < 2) throw new InvalidTargetPosition("위치은 2자리 이상이어야합니다.");
         return this.board.getRank(getYPosition(position)).getPiece(getXPosition(position));
     }
     private int getXPosition(String position) {
-        return position.charAt(0) - 'a';
+        int x = position.charAt(0) - 'a';
+        if (x < 0 || x > 7) throw new InvalidTargetPosition("x 좌표는 a~h만 유효합니다.");
+        return x;
     }
     private int getYPosition(String position) {
-        return 8 - Character.getNumericValue(position.charAt(1));
+        int y = 8 - Character.getNumericValue(position.charAt(1));
+        if (y < 0 || y > 7 ) throw new InvalidTargetPosition("y 좌표는 1~8만 유효합니다.");
+        return y;
     }
     
     void replacePiece(String position, Piece piece) {
@@ -26,14 +31,13 @@ public class Position {
         piece.setPosition(position);
     }
     void move(String startPosition, String endPosition) {
+        if (startPosition == null ) throw new InvalidTargetPosition("시작 위치를 확인해주세요.");
+        
         Piece targetPiece = board.findPiece(endPosition);
         Piece orderPiece = board.findPiece(startPosition);
-        if (orderPiece.checkSameTeam(targetPiece)) {
-            throw new InvalidTargetPosition("같은 편이 있는 자리 입니다.");
-        }
-        if (!orderPiece.checkMoveAvailable(endPosition)) {
-            throw new InvalidTargetPosition("불가능한 위치 입니다.");
-        }
+        
+        if (orderPiece.checkSameTeam(targetPiece)) throw new InvalidTargetPosition("같은 편이 있는 자리 입니다.");
+        if (!orderPiece.checkMoveAvailable(endPosition)) throw new InvalidTargetPosition("불가능한 위치 입니다.");
         replacePiece(endPosition, orderPiece);
         replacePiece(startPosition, Blank.createBlank(startPosition));
     }
