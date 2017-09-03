@@ -36,8 +36,8 @@ public class Position {
         Piece targetPiece = board.findPiece(endPosition);
         Piece orderPiece = board.findPiece(startPosition);
         
-        if (orderPiece.checkSameTeam(targetPiece)) throw new InvalidTargetPosition("같은 편이 있는 자리 입니다.");
         if (!orderPiece.checkMoveAvailable(board, endPosition)) throw new InvalidTargetPosition("불가능한 위치 입니다. 가능한 위치 : " + orderPiece.getMoveAvailable());
+        if (orderPiece.checkSameTeam(targetPiece)) throw new InvalidTargetPosition("같은 편이 있는 자리 입니다.");
         replacePiece(endPosition, orderPiece);
         replacePiece(startPosition, Blank.createBlank(startPosition));
     }

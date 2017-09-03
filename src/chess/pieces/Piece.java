@@ -71,7 +71,7 @@ public abstract class Piece {
     }
     protected boolean isPositionAvailable(Board board, String position) {
         int x = position.charAt(0) - 'a';
-        int y = 8 - Character.getNumericValue(position.charAt(1));
+        int y = 8 - Integer.parseInt(position.substring(1));
         
         if (x < 0 || x > 7) return false;
         if (y < 0 || y > 7 ) return false;
