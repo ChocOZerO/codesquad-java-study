@@ -1,7 +1,6 @@
 package chess.pieces;
 
-import java.util.ArrayList;
-import java.util.List;
+import chess.Board;
 
 public class Bishop extends Piece {
     
@@ -16,24 +15,33 @@ public class Bishop extends Piece {
     }
     
     @Override
-    public boolean checkMoveAvailable(String target) {
-        setMoveAvailable();
-        if (this.moveAvailable.size() < 1) return false;
-        for (String move: this.moveAvailable) {
-            if (move.equals(target)) return true;
+    protected void setMoveAvailable(Board board) {
+        
+        String availablePosition = "";
+        
+        for (int i = 1; i <= 7; i++) { // positionRightUp
+            availablePosition = String.valueOf((char)(97+this.getXPosition()+i)) + (this.getYPosition()+i);
+            if (addMoveAvailable(board, availablePosition)) break;
+        }
+        for (int i = 1; i <= 7; i++) { // positionRightDown
+            availablePosition = String.valueOf((char)(97+this.getXPosition()+i)) + (this.getYPosition()-i);
+            if (addMoveAvailable(board, availablePosition)) break;
+        }
+        for (int i = 1; i <= 7; i++) { // positionLeftDown
+            availablePosition = String.valueOf((char)(97+this.getXPosition()-i)) + (this.getYPosition()-i);
+            if (addMoveAvailable(board, availablePosition)) break;
+        }
+        for (int i = 1; i <= 7; i++) { // positionLeftUp
+            availablePosition = String.valueOf((char)(97+this.getXPosition()-i)) + (this.getYPosition()+i);
+            if (addMoveAvailable(board, availablePosition)) break;
+        }
+        
+    }
+    private boolean addMoveAvailable(Board board, String availablePosition) {
+        if (isPositionAvailable(board, availablePosition)) {
+            this.moveAvailable.add(availablePosition);
+            if (isPieceBarrier(board, availablePosition)) return true;
         }
         return false;
     }
-
-    @Override
-    protected void setMoveAvailable() {
-        this.moveAvailable = new ArrayList<>();
-        for (int i = 1; i <= 7; i++) {
-            this.moveAvailable.add(String.valueOf((char)(97+this.getXPosition()+i)) + (this.getYPosition()+i));
-            this.moveAvailable.add(String.valueOf((char)(97+this.getXPosition()+i)) + (this.getYPosition()-i));
-            this.moveAvailable.add(String.valueOf((char)(97+this.getXPosition()-i)) + (this.getYPosition()-i));
-            this.moveAvailable.add(String.valueOf((char)(97+this.getXPosition()-i)) + (this.getYPosition()+i));
-        }
-    }
-
 }

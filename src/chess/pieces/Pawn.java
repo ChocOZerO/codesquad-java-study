@@ -1,6 +1,6 @@
 package chess.pieces;
 
-import java.util.ArrayList;
+import chess.Board;
 
 public class Pawn extends Piece {
     
@@ -15,26 +15,16 @@ public class Pawn extends Piece {
     }
     
     @Override
-    public boolean checkMoveAvailable(String target) {
-        setMoveAvailable();
-        if (this.moveAvailable.size() < 1) return false;
-        for (String move: this.moveAvailable) {
-            if (move.equals(target)) return true;
-        }
-        return false;
+    protected void setMoveAvailable(Board board) {
+        if (this.isBlack()) setMoveBlackAvailable(board);
+        setMoveWhiteAvailable(board);
     }
-    
-    @Override
-    protected void setMoveAvailable() {
-        if (this.isBlack()) setMoveBlackAvailable();
-        setMoveWhiteAvailable();
+    private void setMoveBlackAvailable(Board board){
+        String availablePosition = String.valueOf((char)(97+this.getXPosition())) + (this.getYPosition()-1);
+        if (isPositionAvailable(board, availablePosition)) this.moveAvailable.add(availablePosition);
     }
-    private void setMoveBlackAvailable(){
-        this.moveAvailable = new ArrayList<>();
-        this.moveAvailable.add(String.valueOf((char)(97+this.getXPosition())) + (this.getYPosition()-1));
-    }
-    private void setMoveWhiteAvailable(){
-        this.moveAvailable = new ArrayList<>();
-        this.moveAvailable.add(String.valueOf((char)(97+this.getXPosition())) + (this.getYPosition()+1));
+    private void setMoveWhiteAvailable(Board board){
+        String availablePosition = String.valueOf((char)(97+this.getXPosition())) + (this.getYPosition()+1);
+        if (isPositionAvailable(board, availablePosition)) this.moveAvailable.add(availablePosition);
     }
 }

@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import chess.pieces.Bishop;
 import chess.pieces.Blank;
+import chess.pieces.Knight;
 import chess.pieces.Piece;
 import chess.pieces.Rook;
 
@@ -84,10 +85,10 @@ public class BoardTest {
     public void moveNotAvailable() throws Exception {
         board.initialize();
         
-        String target = "b5";
-        String order = "a1";
+        String target = "c3";
+        String order = "b1";
         Piece piece = board.findPiece(order); 
-        assertEquals(Rook.createWhiteRook(order), piece);
+        assertEquals(Knight.createWhiteKnight(order), piece);
         board.move(order , target);
 
         assertEquals(piece, board.findPiece(target));

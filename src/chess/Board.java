@@ -63,7 +63,7 @@ public class Board {
         return sb.toString();
     }
     
-    Piece findPiece(String target) {
+    public Piece findPiece(String target) {
         return position.findPiece(target);
     }
     

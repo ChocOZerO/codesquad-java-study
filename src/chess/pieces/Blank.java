@@ -1,7 +1,6 @@
 package chess.pieces;
 
-import java.util.ArrayList;
-import java.util.List;
+import chess.Board;
 
 public class Blank extends Piece {
     
@@ -13,14 +12,8 @@ public class Blank extends Piece {
     }
     
     @Override
-    public boolean checkMoveAvailable(String target) {
-        setMoveAvailable();
-        return false;
-    }
-
-    @Override
-    protected void setMoveAvailable() {
-        this.moveAvailable = new ArrayList<>();
+    protected void setMoveAvailable(Board board) {
+        // blank 는 none
     }
 
 }

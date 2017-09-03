@@ -12,7 +12,7 @@ public class Position {
     }
     
     Piece findPiece(String position) {
-        if (position.length() < 2) throw new InvalidTargetPosition("위치은 2자리 이상이어야합니다.");
+        if (position.length() != 2) throw new InvalidTargetPosition("위치는 알파벳1자리+숫자1자리 총 2자리만 가능합니다.");
         return this.board.getRank(getYPosition(position)).getPiece(getXPosition(position));
     }
     private int getXPosition(String position) {
@@ -37,7 +37,7 @@ public class Position {
         Piece orderPiece = board.findPiece(startPosition);
         
         if (orderPiece.checkSameTeam(targetPiece)) throw new InvalidTargetPosition("같은 편이 있는 자리 입니다.");
-        if (!orderPiece.checkMoveAvailable(endPosition)) throw new InvalidTargetPosition("불가능한 위치 입니다.");
+        if (!orderPiece.checkMoveAvailable(board, endPosition)) throw new InvalidTargetPosition("불가능한 위치 입니다. 가능한 위치 : " + orderPiece.getMoveAvailable());
         replacePiece(endPosition, orderPiece);
         replacePiece(startPosition, Blank.createBlank(startPosition));
     }

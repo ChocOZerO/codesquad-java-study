@@ -1,7 +1,6 @@
 package chess.pieces;
 
-import java.util.ArrayList;
-import java.util.List;
+import chess.Board;
 
 public class Knight extends Piece {
     
@@ -16,26 +15,32 @@ public class Knight extends Piece {
     }
     
     @Override
-    public boolean checkMoveAvailable(String target) {
-        setMoveAvailable();
-        if (this.moveAvailable.size() < 1) return false;
-        for (String move: this.moveAvailable) {
-            if (move.equals(target)) return true;
-        }
-        return false;
-    }
-
-    @Override
-    protected void setMoveAvailable() {
-        this.moveAvailable = new ArrayList<>();
-        this.moveAvailable.add(String.valueOf((char)(97+this.getXPosition()+1)) + (this.getYPosition()+2));
-        this.moveAvailable.add(String.valueOf((char)(97+this.getXPosition()+1)) + (this.getYPosition()-2));
-        this.moveAvailable.add(String.valueOf((char)(97+this.getXPosition()+2)) + (this.getYPosition()+1));
-        this.moveAvailable.add(String.valueOf((char)(97+this.getXPosition()+2)) + (this.getYPosition()-1));
-        this.moveAvailable.add(String.valueOf((char)(97+this.getXPosition()-1)) + (this.getYPosition()+2));
-        this.moveAvailable.add(String.valueOf((char)(97+this.getXPosition()-1)) + (this.getYPosition()-2));
-        this.moveAvailable.add(String.valueOf((char)(97+this.getXPosition()-2)) + (this.getYPosition()+1));
-        this.moveAvailable.add(String.valueOf((char)(97+this.getXPosition()-2)) + (this.getYPosition()-1));
+    protected void setMoveAvailable(Board board) {
+        // 시계방향으로 8가지 방향
+        //1
+        String availablePosition = String.valueOf((char)(97+this.getXPosition()+1)) + (this.getYPosition()+2);
+        if (isPositionAvailable(board, availablePosition)) this.moveAvailable.add(availablePosition);
+        //2
+        availablePosition = String.valueOf((char)(97+this.getXPosition()+1)) + (this.getYPosition()-2);
+        if (isPositionAvailable(board, availablePosition)) this.moveAvailable.add(availablePosition);
+        //3
+        availablePosition = String.valueOf((char)(97+this.getXPosition()+2)) + (this.getYPosition()+1);
+        if (isPositionAvailable(board, availablePosition)) this.moveAvailable.add(availablePosition);
+        //4
+        availablePosition = String.valueOf((char)(97+this.getXPosition()+2)) + (this.getYPosition()-1);
+        if (isPositionAvailable(board, availablePosition)) this.moveAvailable.add(availablePosition);
+        //5
+        availablePosition = String.valueOf((char)(97+this.getXPosition()-1)) + (this.getYPosition()+2);
+        if (isPositionAvailable(board, availablePosition)) this.moveAvailable.add(availablePosition);
+        //6
+        availablePosition = String.valueOf((char)(97+this.getXPosition()-1)) + (this.getYPosition()-2);
+        if (isPositionAvailable(board, availablePosition)) this.moveAvailable.add(availablePosition);
+        //7
+        availablePosition = String.valueOf((char)(97+this.getXPosition()-2)) + (this.getYPosition()+1);
+        if (isPositionAvailable(board, availablePosition)) this.moveAvailable.add(availablePosition);
+        //8
+        availablePosition = String.valueOf((char)(97+this.getXPosition()-2)) + (this.getYPosition()-1);
+        if (isPositionAvailable(board, availablePosition)) this.moveAvailable.add(availablePosition);
     }
 
 }

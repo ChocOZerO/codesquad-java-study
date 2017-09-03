@@ -3,6 +3,8 @@ package chess.pieces;
 import java.util.ArrayList;
 import java.util.List;
 
+import chess.Board;
+
 public abstract class Piece {
     
     public enum Color {
@@ -31,13 +33,13 @@ public abstract class Piece {
     private Type type;
     private String position;
     
-    List<String> moveAvailable;
+    List<String> moveAvailable = new ArrayList<>();
     
     public int getXPosition() {
         return this.position.charAt(0) - 'a';
     }
     public int getYPosition() {
-        return 8 - Character.getNumericValue(this.position.charAt(1));
+        return Character.getNumericValue(this.position.charAt(1));
     }
     
     protected Piece(Color color, Type type, String position) {
@@ -46,8 +48,36 @@ public abstract class Piece {
         this.position = position;
     }
     
-    public abstract boolean checkMoveAvailable(String target);
-    protected abstract void setMoveAvailable();
+    public boolean checkMoveAvailable(Board board, String target) {
+        setMoveAvailable(board);
+        if (this.moveAvailable.size() < 1) return false;
+        for (String moveTarget: this.moveAvailable) {
+            if (moveTarget.equals(target)) return true;
+        }
+        return false;
+    }
+    
+    protected abstract void setMoveAvailable(Board board);
+    
+    public List<String> getMoveAvailable() {
+        return this.moveAvailable;
+    }
+    
+    protected boolean isPieceBarrier(Board board, String target) {
+        if (!board.findPiece(target).getType().equals(Piece.Type.NO_PIECE)) {
+            return true;
+        }
+        return false;
+    }
+    protected boolean isPositionAvailable(Board board, String position) {
+        int x = position.charAt(0) - 'a';
+        int y = 8 - Character.getNumericValue(position.charAt(1));
+        
+        if (x < 0 || x > 7) return false;
+        if (y < 0 || y > 7 ) return false;
+        if (this.checkSameTeam(board.findPiece(position))) return false;
+        return true;
+    }
     
     public Color getColor() {
         return this.color;
